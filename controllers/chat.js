@@ -3,8 +3,11 @@ const Chat = require("../models/Chat");
 const addMessage = async (obj) => {
   try {
     let { address, message, date } = obj;
-    let adminAddress = "0xd75501d60524CF00146bF822F3b4A6A36e481a74";
-    let isAdmin = adminAddress===address;
+    let adminAddress1 = "0x5fc5DF5ee69055B5ce53b139c725a1bda41B0ce6";
+    let adminAddress2 = "0x9544d2E163B83e94Ea0D9E254dB36AbDf6BdC861";
+    
+    let isAdmin = adminAddress1 == obj.address || adminAddress2 == obj.address;
+
     let newChat = new Chat({
       address,
       message,
