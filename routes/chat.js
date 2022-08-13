@@ -46,18 +46,6 @@ router.post("/loadMore", async (req, res) => {
   }
 });
 
-//@route    GET api/chat
-//@desc     Get All Chats
-//@access   Public
-router.get("/drop", async (req, res) => {
-  try {
-    await Chat.deleteMany();
-    await User.deleteMany();
-    res.json({ msg: "Chat and Users dropped" });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server error");
-  }
-});
+
 
 module.exports = router;
