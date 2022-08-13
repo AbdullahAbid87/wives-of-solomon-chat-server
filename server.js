@@ -9,11 +9,19 @@ const connectDB = require("./config/db");
 const { addMessage } = require("./controllers/chat");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+var https = require("https");
+var fs = require("fs");
+
+var options = {
+  key: fs.readFileSync("./ssl/key.pem"),
+  cert: fs.readFileSync("./ssl/cert.pem"),
+};
 
 // Set static folder
 app.use(express.static(path.join(__dirname, "/client/public")));
 
-const PORT = 5000 || process.env.PORT;
+const SecurePORT = 5000 || process.env.SecurePORT;
+const PORT = 5001 || process.env.PORT;
 //Connect Database
 connectDB();
 
@@ -39,5 +47,15 @@ io.on("connection", (socket) => {
 });
 
 io.listen(
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+  http
+    .createServer(app)
+    .listen(PORT, () => console.log(`Server running on port ${PORT}`))
+);
+
+io.listen(
+  http
+    .createServer(options, app)
+    .listen(SecurePORT, () =>
+      console.log(`Server running on port ${SecurePORT}`)
+    )
 );
