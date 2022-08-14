@@ -11,7 +11,6 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 var https = require("https");
 var fs = require("fs");
-var cors = require('cors');
 
 var options = {
   key: fs.readFileSync("ssl/key.pem"),
@@ -19,7 +18,7 @@ var options = {
 };
 
 // use it before all route definitions
-app.use(cors({origin: 'https://kza.rzw.mybluehost.me/'}));
+app.use(cors({origin: 'https://kza.rzw.mybluehost.me'}));
 
 // Set static folder
 app.use(express.static(path.join(__dirname, "/client/public")));
@@ -31,8 +30,6 @@ connectDB();
 
 //Init Middleware
 app.use(express.json({ extended: false }));
-
-app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
