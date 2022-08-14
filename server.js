@@ -11,11 +11,15 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 var https = require("https");
 var fs = require("fs");
+var cors = require('cors');
 
 var options = {
   key: fs.readFileSync("ssl/key.pem"),
   cert: fs.readFileSync("ssl/cert.pem"),
 };
+
+// use it before all route definitions
+app.use(cors({origin: 'https://kza.rzw.mybluehost.me/'}));
 
 // Set static folder
 app.use(express.static(path.join(__dirname, "/client/public")));
