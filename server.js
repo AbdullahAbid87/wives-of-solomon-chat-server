@@ -23,7 +23,7 @@ var options = {
 };
 
 // use it before all route definitions
-app.use(cors({origin: 'https://kza.rzw.mybluehost.me'}));
+app.use(cors());
 
 // Set static folder
 app.use(express.static(path.join(__dirname, "/client/public")));
