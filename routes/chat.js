@@ -11,6 +11,7 @@ router.get("/", async (req, res) => {
     const chats = (
       await Chat.find().sort({ $natural: -1 }).limit(10)
     ).reverse();
+    res.header("Access-Control-Allow-Origin", "*");
     res.json({ chats });
   } catch (err) {
     console.error(err.message);
@@ -24,6 +25,7 @@ router.get("/", async (req, res) => {
 router.get("/count", async (req, res) => {
   try {
     const chatCount = await Chat.find().count();
+    res.header("Access-Control-Allow-Origin", "*");
     res.json({ chatCount });
   } catch (err) {
     console.error(err.message);
@@ -39,6 +41,7 @@ router.post("/loadMore", async (req, res) => {
     const { currentChatCount } = req.body;
     let newChatCount = currentChatCount + 10;
     const chats = await (await Chat.find().sort({ $natural: -1 }).limit(newChatCount)).reverse();
+    res.header("Access-Control-Allow-Origin", "*");
     res.json({ chats });
   } catch (err) {
     console.error(err.message);

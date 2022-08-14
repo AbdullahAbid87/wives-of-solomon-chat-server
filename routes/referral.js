@@ -12,8 +12,10 @@ router.post("/getUserReferral", async (req, res) => {
       address,
     });
     if (!currentUser) {
+      res.header("Access-Control-Allow-Origin", "*");
       return res.json({ noReferral: "Referral not generated" });
     } else {
+      res.header("Access-Control-Allow-Origin", "*");
       return res.json({ currentUser });
     }
   } catch (err) {
@@ -39,6 +41,7 @@ router.post("/addReferral", async (req, res) => {
       { $set: userFields },
       { new: true, upsert: true }
     );
+    res.header("Access-Control-Allow-Origin", "*");
     return res.json({ updatedUser });
   } catch (err) {
     console.error(err.message);
@@ -85,6 +88,7 @@ router.post("/updateReferral", async (req, res) => {
       { $set: userFields },
       { new: true }
     );
+    res.header("Access-Control-Allow-Origin", "*");
     return res.json({ updatedUser });
   } catch (err) {
     console.error(err.message);
