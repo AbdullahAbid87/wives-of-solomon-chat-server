@@ -13,8 +13,8 @@ var https = require("https");
 var fs = require("fs");
 
 var options = {
-  key: fs.readFileSync("./ssl/key.pem"),
-  cert: fs.readFileSync("./ssl/cert.pem"),
+  key: fs.readFileSync("ssl/key.pem"),
+  cert: fs.readFileSync("ssl/cert.pem"),
 };
 
 // Set static folder
@@ -53,9 +53,9 @@ io.listen(
 );
 
 io.listen(
-  http
+  https
     .createServer(options, app)
     .listen(SecurePORT, () =>
-      console.log(`Server running on port ${SecurePORT}`)
+      console.log(`Secure Server running on port ${SecurePORT}`)
     )
 );
