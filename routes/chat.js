@@ -49,20 +49,4 @@ router.post("/loadMore", async (req, res) => {
   }
 });
 
-
-//@route    GET api/chat
-//@desc     Get All Chats
-//@access   Public
-router.get("/drop", async (req, res) => {
-  try {
-    await Chat.remove();
-    await User.remove();
-    res.header("Access-Control-Allow-Origin", "*");
-    res.json({ msg:"Chat and users dropped" });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server error");
-  }
-});
-
 module.exports = router;
