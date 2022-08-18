@@ -17,11 +17,10 @@ const bodyParser = require("body-parser");
 var https = require("https");
 var fs = require("fs");
 
-var options = {
-  key: fs.readFileSync("ssl/key.pem"),
-  cert: fs.readFileSync("ssl/cert.pem"),
+const options = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem')
 };
-
 // use it before all route definitions
 app.use(cors());
 
