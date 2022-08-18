@@ -44,7 +44,7 @@ app.use("/api/referral", require("./routes/referral"));
 io.on("connection", (socket) => {
   socket.on("chatMessage", async (obj) => {
     let adminAddress1 = "0x5fc5DF5ee69055B5ce53b139c725a1bda41B0ce6";
-    let adminAddress2 = "0x9544d2E163B83e94Ea0D9E254dB36AbDf6BdC861";
+    let adminAddress2 = "0x48C7E38Dcb67542852C09395476A21A29E0cDC77";
     let isAdmin = adminAddress1 == obj.address || adminAddress2 == obj.address;
     io.emit("message", { ...obj, isAdmin });
     await addMessage(obj);
